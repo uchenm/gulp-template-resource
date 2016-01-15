@@ -1,0 +1,41 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "description": "A gulp plugin for putting multiple json files into angular templateCache.",
+  "keywords": [
+    "gulpplugin",
+    "json",
+    "templateCache",
+    "combine"
+  ],
+  "homepage": "https://github.com/uchenm/gulp-template-resource",
+  "bugs": "https://github.com/uchenm/gulp-template-resource/issues",
+  "author": {
+    "name": "Ming Chen",
+    "url": "https://github.com/uchenm"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/uchenm/gulp-template-resource.git"
+  },
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "event-stream": "3.x",
+    "gulp-util": "3.x",
+    "js-string-escape": "~1.0.0",
+    "gulp-footer": "1.x",
+    "gulp-header": "1.x",
+    "gulp-concat": "2.x"
+  },
+  "devDependencies": {
+    "mocha": "latest"
+  },
+  "engines": {
+    "node": ">=0.9"
+  },
+  "license": "MIT"
+}

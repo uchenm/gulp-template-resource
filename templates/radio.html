@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label class="col-md-2 control-label">{{field.label}}*</label>
+
+    <div class="col-md-6">
+        <label ng-repeat="option in field.options">
+            <input type="radio" value="{{option.value}}" name="{{field.name}}"
+                   ng-model="currentItem[fieldName]" validator="{{field.validator}}"/>
+            <span ng-bind="option.title"></span>&nbsp;&nbsp;
+        </label>
+    </div>
+</div>
