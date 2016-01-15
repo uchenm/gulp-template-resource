@@ -41,6 +41,45 @@ angular.module("templates").run([$templateCache,
 
 ```
 
+
+or you can put a bunch of html files into a single html template file:
+
+a.html
+
+<div>
+    aaaaaa
+</div>
+
+b.html
+
+<div>
+    <label class="col-md-2 control-label">bbbbbb</label>
+</div>
+
+gulp.src('templates/**/*.html').pipe(templateResource('templates.html', {
+    "standalone": true,
+    "templateBody": "<script type=\"text/ng-template\" id=\"<%= url %>\">\n\n<%= contents %>\n\n</script>",
+    "templateHeader": " ",
+    "templateFooter": " "
+})).pipe(gulp.dest('output'));
+
+templates.html:
+
+<script type="text/ng-template" id="a.html">
+
+    <div>
+        aaaaaa
+    </div>
+
+</script>
+<script type="text/ng-template" id="b.html">
+
+    <div>
+        <label class="col-md-2 control-label">bbbbbb</label>
+    </div>
+
+</script> 
+
 ## License
 
 The MIT License (MIT)
