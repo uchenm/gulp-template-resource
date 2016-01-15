@@ -44,17 +44,27 @@ angular.module("templates").run([$templateCache,
 
 or you can put a bunch of html files into a single html template file:
 
-a.html
+
+**a.html**
+```a.html
 
 <div>
     aaaaaa
 </div>
 
-b.html
+```
+
+**b.html**
+```b.html
 
 <div>
     <label class="col-md-2 control-label">bbbbbb</label>
 </div>
+
+```
+
+**gulpfile.js**
+```code
 
 gulp.src('templates/**/*.html').pipe(templateResource('templates.html', {
     "standalone": true,
@@ -63,7 +73,11 @@ gulp.src('templates/**/*.html').pipe(templateResource('templates.html', {
     "templateFooter": " "
 })).pipe(gulp.dest('output'));
 
-templates.html:
+```
+
+
+**template.html**
+```code
 
 <script type="text/ng-template" id="a.html">
 
@@ -79,6 +93,9 @@ templates.html:
     </div>
 
 </script> 
+
+```
+
 
 ## License
 
