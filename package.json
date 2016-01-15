@@ -1,12 +1,12 @@
 {
-  "name": "application-name",
+  "name": "gulp-template-resource",
   "version": "0.0.1",
   "description": "A gulp plugin for putting multiple json files into angular templateCache.",
   "keywords": [
     "gulpplugin",
     "json",
-    "templateCache",
-    "combine"
+    "template",
+    "json/html"
   ],
   "homepage": "https://github.com/uchenm/gulp-template-resource",
   "bugs": "https://github.com/uchenm/gulp-template-resource/issues",
