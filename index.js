@@ -7,6 +7,7 @@ var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var header = require('gulp-header');
 var footer = require('gulp-footer');
+var htmlJsStr = require('js-string-escape');
 var path = require('path');
 
 var TEMPLATE_HEADER = 'angular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {\n\n';
@@ -46,10 +47,14 @@ var templateFiles = function (options) {
     var handleResourceFile = function (file, callback) {
         var template = options.templateBody || TEMPLATE_BODY;
         var url = getUrl(file);
+        var contents=file.contents;
+        if(options.stringify){
+            contents=htmlJsStr(contents);
+        }
         //Create buffer
         file.contents = new Buffer(gutil.template(template, {
             url: url,
-            contents: file.contents,
+            contents: contents,
             file: file
         }));
         //file.processedByTemplateCache = true;

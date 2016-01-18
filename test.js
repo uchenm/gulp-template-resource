@@ -4,7 +4,7 @@
 
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
-var htmlJsStr = require('js-string-escape');
+
 var templateResource = require('./');
 
 gulp.src('data/**/*.json').pipe(templateResource('build.js', {"standalone": true})).pipe(gulp.dest('output'));
@@ -17,7 +17,7 @@ gulp.src('templates/**/*.html').pipe(templateResource('templates.html', {
 })).pipe(gulp.dest('output'));
 
 gulp.src('templates/**/*.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(htmlmin({collapseWhitespace: true,stringify:true}))
     //.pipe(htmlJsStr())
     .pipe(templateResource('templates.js', {
         "standalone": true,

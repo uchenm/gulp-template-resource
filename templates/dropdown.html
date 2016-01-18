@@ -1,8 +1,14 @@
 <div class="form-group">
-    <label class="col-md-2 control-label">{{field.label}}*</label>
+    <label for="dropdown-{{field.name}}" class="col-md-2 control-label">{{field.label}}*</label>
 
     <div class="col-md-6">
-            <textarea class="form-control" type="text" ng-model="currentItem[fieldName]"
-                      validator="{{field.validator}}"/>
+        <select type="checkbox" ng-model="currentItem[fieldName]" validator="{{field.validator}}"
+                class="form-control" id="dropdown-{{field.name}}" placeholder="{{field.label}}">
+            <option ng-repeat="option in field.options"
+                    ng-selected="option.value == currentItem[field.name]"
+                    value="{{option.value}}">
+                {{option.title}}
+            </option>
+        </select>
     </div>
 </div>
