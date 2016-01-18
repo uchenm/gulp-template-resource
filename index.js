@@ -21,14 +21,27 @@ var templateFiles = function (options) {
         return name.replace(/\\/g, '/');
     }
     var getUrl = function (file) {
-        file.path = path.normalize(file.path);
-        var root = options.root||"";
+        var root=options.root||'';
+        var url;
 
-        var url = path.join(root, file.path.replace(file.base, ''));
+        file.path = path.normalize(file.path);
+        //Rewrite url
+        if (typeof options.base === 'function') {
+            url = path.join(root, options.base(file));
+        } else {
+            url = path.join(root, file.path.replace(options.base || file.base, ''));
+        }
         if (root === '.' || root.indexOf('./') === 0) {
             url = './' + url;
         }
-        return normalizeName(url);
+        if (typeof options.transformUrl === 'function') {
+            url = options.transformUrl(url);
+        }
+        //Normalize url (win only)
+        if (process.platform === 'win32') {
+            url = normalizeName(url);
+        }
+        return url;
     };
     var handleResourceFile = function (file, callback) {
         var template = options.templateBody || TEMPLATE_BODY;
@@ -52,12 +65,12 @@ var templateResource = function (filename, options) {
         options = filename || {};
         filename = options.filename || DEFAULT_FILENAME;
     }
-    console.log("templateCache===========", filename, options);
+    //console.log("templateCache===========", filename, options);
     //Prepare header / footer
     var templateHeader = options.templateHeader || TEMPLATE_HEADER;
     var templateFooter = options.templateFooter || TEMPLATE_FOOTER;
-    console.log("templateHeader===========", templateHeader);
-    console.log("templateFooter===========", templateFooter);
+    //console.log("templateHeader===========", templateHeader);
+    //console.log("templateFooter===========", templateFooter);
     //Build templateCache
     return es.pipeline(
         //templateCacheStream(options.root || '', options.base, options.templateBody, options.transformUrl),
